@@ -375,10 +375,10 @@ T_2 \sim \frac{\hbar}{A} \left|\frac{\partial E_{01}}{\partial n_g}\right|^{-1} 
 \newline
 \paragraph{Анализ ???.} Рассмотрим собственные состояния трансмона (Рис. \ref{fig:transmon-eigenstates}). Для типичного $E_J / E_C = 100$ они еще не являются фазовыми состояниями ($\ket{\varphi} = \frac{1}{\sqrt{2 \pi}} \sum_n e^{i n \varphi} \ket{n}) $ и $\braket{t}{n}$ существенно затухает с ростом $n$ [wtf? как оценить падение $\braket{t}{n}$ ??]. Значит, можно использовать конечноразмерный гамильтониан трансмона в форме (\ref{eq:ham-qubit-charge-basis-N}). Кроме того, при отстутствия утечек на более высокие уровни можно рассматривать только первые два уровня трансмона $\ket{0}$ и $\ket{1}$ -- они и являются репрезентативными состояниями кубита. В этом случае привычный гамильтониан трансмона (\ref{eq:ham-qubit-charge-basis-N}) упрощается:
 \begin{equation}
-\hat{H}_{2d} = \frac{\hbar w_{ge}}{2} \hat{\sigma}_z
+\hat{H}_{2d} = \frac{\hbar \omega_{ge}}{2} \hat{\sigma}_z
 \label{eq:ham-qubit-2d}
 \end{equation}
-, где $w_{ge} = E_1 - E_0$. Стоит еще раз отметить, что здесь имеется ввиду \textbf{не} $N = 2$ в конечномерном гамильтониане (\ref{eq:ham-qubit-charge-basis-N}), а первые два уровня в собственном базисе $\ket{t}$ трансмона.
+, где $\omega_{ge} = E_1 - E_0$. Стоит еще раз отметить, что здесь имеется ввиду \textbf{не} $N = 2$ в конечномерном гамильтониане (\ref{eq:ham-qubit-charge-basis-N}), а первые два уровня в собственном базисе $\ket{t}$ трансмона.
 \begin{figure}[!h]
 \centering
 \includegraphics[width=1\textwidth]{Pictures2/transmon_eigenstates}
@@ -387,8 +387,8 @@ T_2 \sim \frac{\hbar}{A} \left|\frac{\partial E_{01}}{\partial n_g}\right|^{-1} 
 \end{figure}
 
 
-\section{Динамика трансмона}
-В этой главе будут рассмотрены следующие вопросы динамики трансмона:свободный трансмон и отклик на различные виды внешнего воздействия, использование приближения вращающейся волны (``rotating wave approximation'' -- RWA)  и учет взаимодействия с внешней средой.
+\section{Бездиссипативная динамика трансмона}
+В этом разделе будут рассмотрены следующие вопросы динамики трансмона:свободный трансмон, отклик на различные виды внешнего воздействия и использование приближения вращающейся волны (``rotating wave approximation'' -- RWA).
 \subsection{Динамика свободного кубита}
 Прежде всего изучим динамику свободного кубита. Отстутствует любые внешние воздействия, и, как следствие, утечки на внешние уровни. Некоторая временная зависимость при этом все же появится. Действительно, запишем уравнение Шредингера для столь простого случая:
 \begin{equation}
@@ -397,7 +397,7 @@ i \hbar \frac{\partial \psi} {\partial t} = \hat{H} \psi
 \end{equation}
 В таком случае можно ограничиться двухуровневым приближением
 \begin{equation}
-\psi(t) = \psi(0) exp\left(i \frac{w_{ge}}{2} \hat{\sigma}_z t\right) 
+\psi(t) = \psi(0) exp\left(-i \frac{\omega_{ge}}{2} \hat{\sigma}_z t\right) 
 \label{eq:shrodinger-sol-simpliest-2d}
 \end{equation}
 При этом заселенности уровней $|\psi_{0,1}(t)|^2 = |\psi_{0,1}|^2$ не меняются со временем (что соответствует сохранению энергии в системе). 
@@ -407,22 +407,39 @@ i \hbar \frac{\partial \psi} {\partial t} = \hat{H} \psi
 \hat{\sigma}_y = \left(\begin{matrix} 0 & -i \\ i & 0 \end{matrix} \right),
 \hat{\sigma}_z = \left(\begin{matrix} 1 & 0 \\ 0 & -1 \end{matrix} \right)
 \end{equation}
-\begin{wrapfigure}{r}{0.5\textwidth}
-\includegraphics[width=0.5\textwidth ]{Pictures2/simple-free-2d}
-\caption{ Динамика $\hat{\sigma}_x$, $\hat{\sigma}_y$, $\hat{\sigma}_z$. Для простоты $w_{ge}$ положена равной $1$.}
+
+\begin{figure}[!h]
+\begingroup
+\captionsetup[subfigure]{width=0.9\textwidth, justification=normal}
+\centering
+\begin{subfigure}[t]{0.45\linewidth}
+\centering
+\includegraphics[height = \textwidth]{Pictures2/bloch-2pi}
+\caption{Траектория на сфере Блоха}
+\label{fig:bloch-2pi}
+\end{subfigure}~
+\begin{subfigure}[t]{0.45\linewidth}
+\centering
+\includegraphics[height = 0.95\textwidth]{Pictures2/simple-free-2d}
+\caption{Как график зависимости от времени}
 \label{fig:simple-free-2d}
-\end{wrapfigure}
-Они (вместе с единичной матрицей) составляют базис в пространстве \textit{эрмитовых} матриц 2x2 (а значит и \textit{унитарных}). Для свободного трансмона значение $\bra{\psi(t)}\hat{\sigma}_{x,y}\ket{\psi(t)}$ уже не будет постоянным, а будет осциллировать с частотой $w_{ge}$. 
+\end{subfigure}
+\endgroup
+\caption{Динамика $\hat{\sigma}_x$, $\hat{\sigma}_y$, $\hat{\sigma}_z$. Для простоты $w_{ge}$ положена равной $1$.}
+\label{fig:dynamics-free-2d}
+\end{figure}
+Они (вместе с единичной матрицей) составляют базис в пространстве \textit{эрмитовых} матриц 2x2 (а значит и \textit{унитарных}). В желаемом случае отстутсвия утечек с $\ket{0}$ и $\ket{1}$ $\left<\mathbbm{\hat 1}\right> \equiv 1$, а остальные $\left<\sigma\right>$ лежат \textit{на} сфере Блоха. В более общем случае они лежат \textit{внутри} сферы Блоха. Для свободного трансмона значение $\bra{\psi(t)}\hat{\sigma}_{x,y}\ket{\psi(t)}$ уже не будет постоянным, а будет осциллировать с частотой $\omega_{ge}$. 
 \paragraph{Вращающийся базис} Иногда, в частности при работе с более чем одним кубитом, нагляднее работать во вращающемся с частотой $w_{ge}$ базисе. В нем $\hat{\sigma}_{x,y}$ уже не будут осциллировать при отсутствии внешних воздействий. Однако, если же из-за какого-либо взаимодействия  фаза кубита все же поменяется, то это будет легче заметить без осциллирующего фона, чем с ним. 
 \newline
 \textit{Наблюдать} операторы во вращающемся базисе можно двумя способами.
 \newline
-Во-первых, можно просто рассмотреть операторы $ \hat{\sigma}_{x,y,z}(t) = \bra{\hat{U}^+(t)}\hat{\sigma}_{x,y,z}\ket{\hat{U}(t)}$, где $\hat{U}(t) \nolinebreak=\nolinebreak exp\left(- i \frac{w_{ge}}{2} \hat{\sigma}_z t \right)$. При этом $\hat{\sigma}_z(t) = \hat{\sigma}_z$, так как он коммутирует с $\hat{U}(t)$.
+Во-первых, можно просто рассмотреть операторы $ \hat{\sigma}_{x,y,z}(t) = \bra{\hat{U}^+(t)}\hat{\sigma}_{x,y,z}\ket{\hat{U}(t)}$, где $\hat{U}(t) \nolinebreak=\nolinebreak exp\left( i \frac{\omega_{ge}}{2} \hat{\sigma}_z t \right)$. При этом $\hat{\sigma}_z(t) = \hat{\sigma}_z$, так как он коммутирует с $\hat{U}(t)$.
 \newline
 \linebreak
 Во-вторых, можно непосредственно перейти в этот базис:
 \begin{equation}
-\psi^{w_{ge}}(t) = \hat{U}(t) \psi
+\psi^{\omega_{ge}}(t) = \hat{U}(t) \psi
+\label{eq:rotating-frame}
 \end{equation}
 Базисными векторами являются столбцы $\hat{U}$. Более подробно этот переход рассмотрен в пункте (\ref{subsec:rwa}). Отметим сейчас, что в этом случае необходимо так же перестроить гамильтониан (\ref{eq:ham-qubit-2d}) или (\ref{eq:ham-qubit-charge-basis-N}).
 
@@ -430,10 +447,84 @@ i \hbar \frac{\partial \psi} {\partial t} = \hat{H} \psi
 \subsection{Вынужденное поведение кубита}
 Общепринятый способ менять состояние трансмона -- взаимодействие кубита с микроволновым воздействием \textbf{[ссылка!]}. Для маленьких амплитуд поля можно ограничиться двухуровневой моделью трансмона, случай больших амплитуд поля рассмотрен позднее \textbf{[внутр.ссылка]}. Действие поля может быть представлено в виде $\hat{\sigma}_x \cos (w t + \varphi)$:
 \begin{equation}
-\hat{H} =  \frac{\hbar w_{ge}}{2} \hat{\sigma}_z + f \hat{\sigma}_x \cos \left(w t + \phi\right)
+\hat{H} =  \frac{\hbar w_{ge}}{2} \hat{\sigma}_z +\hbar f \hat{\sigma}_x \cos \left(\omega t + \phi\right)
+\label{eq:ham-qubit-2d-field}
 \end{equation}
-, здесь $f$ отвечает за амплитуду поля. Частота поля $w$ может быть самой разной, однако, случай $w_{ge} \neq w$ не представляет особого интереса. В случае же $w_{ge} \eq w$ возникает резонанс уровней кубита и возникают \textit{осцилляции Раби}. В зависимости от $\varphi$ будет происходит вращение состояний
+, здесь $f$ отвечает за амплитуду поля. 
+\newline
+\begin{wrapfigure}{r}{0.6\textwidth}
+\includegraphics[width=0.6\textwidth ]{Pictures2/simple-pulse-2f}
+\caption{Бездиссипативные осцилляции Раби под действием э/м поля (результат моделирования во вр. базисе). Отношение амплитуд поля для сплошных и пунктирных графиков равно $2$. \textbf{!!!}}
+\label{fig:simple-pulse-2f}
+\end{wrapfigure}
+Частота поля $w$ как амплитуда $f$ устанавливаются экспериментатором, однако, нерезонансный случай $\omega_{ge} \neq \omega$ не представляет особого интереса. В случае же $w_{ge} = w$ возникает резонанс уровней кубита и возникают \textit{осцилляции Раби}. В зависимости от $\varphi$ будет происходит вращение состояний вокруг различных осей на сфере Блоха.
+Еще один случай простой способ воздействия на кубит - изменение $E_J$ и как следствие $\omega_{ge}$. В этом случае $\sigma_z$ не изменит свое значение, а вот фаза ($\sigma_x, \sigma_y$) может поменяться. На Рис \ref{fig:simple-pulse-2f} можно заметить, что осцилляции Раби не являются чистыми синусоидами, а их период, должно быть, обратно пропорционален $f$. Чтобы понять природу этого, рассмотрим \textit{приближение вращающейся волны} -- RWA.
 \subsection{Приближение вращающейся волны} \label{subsec:rwa}
+Попытаемся приближенно решить уравнение Шредингера на гамильтониан (\ref{eq:ham-qubit-2d-field}) в резонансном случае $\omega_{ge} = \omega$. Для этого перейдем во вращающийся базис (\ref{eq:rotating-frame}):
+\begin{equation}
+\tilde{\psi} = \hat{U} \psi
+\end{equation}
+Запишем в нем уравнение Шредингера:
+$$ i \hbar \frac{\partial}{\partial t} \hat{U}^{+} \tilde{\psi} = \hbar{H} \hat{U}^{+} \tilde{\psi} $$
+%$$ i \hbar \hat{U}^{+} \frac{\partial}{\partial t}  \tilde{\psi} + i \hbar \frac{\partial \hat{U}^{+}}{\partial t}  \tilde{\psi} = \hbar{H} \hat{U}^{+} \tilde{\psi} $$
+$$ i \hbar \frac{\partial}{\partial t} \tilde{\psi} = \hat{U} \hat{H} \hat{U}^{+} \tilde{\psi} - i \hbar \hat{U} \frac{\partial \hat{U}^{+}}{\partial t} \tilde{\psi} $$
+После подстановки $\hat{H}$ получаем
+$$ i \hbar \frac{\partial}{\partial t} \tilde{\psi} = \left( \hbar f \left( \hat{\sigma}_x \cos \omega t - \hat{\sigma}_y \sin \omega t  \right) \right)\tilde{\psi} \cos \left( \omega t + \varphi \right) $$
+$$ i \hbar \frac{\partial}{\partial t} \tilde{\psi} = \frac{f}{2} \left[ \hat{\sigma}_x \left( \cos \left( 2 \omega t + \varphi \right) + \cos \varphi \right) - \hat{\sigma}_y \left( \sin\left(2 \omega t + \varphi \right) - \sin \varphi \right) \right] $$
+Проанализируем полученное уравнение. Слагаемые двойной частоты (и частоты $w$ в исходном базисе) соответствуют ``ряби'' на осцилляциях Раби и ими при рассмотрении динамики на временах $  t >> \frac{2 \pi}{\omega} $ можно пренебречь. В итоге
+
+\begin{equation}
+ i \hbar \frac{\partial}{\partial t} \tilde{\psi} \simeq \frac{f}{2} \left( \hat{\sigma}_x   \cos \varphi  + \hat{\sigma}_y   \sin \varphi  \right)
+\label{eq:rwa-2d}
+\end{equation}
+описывает динамику кубита в приближении вращающейся волны. Из него сразу же видно, что $\varphi$ задает ось, вокруг которой на сфере Блоха вращается состояние кубита. Например, при $\varphi = 0$ будет происходить вращение вокруг $\sigma_x$, что отражено на рис. (\ref{fig:simple-pulse-2f}).
+
+\section{Динамика трансмона, взаимодействующего с внешней средой}
+Здесь рассматривается уравнение Линблада для открытой системы, некоторые частные случаи и введем затухание и дефазировку трансмона.
+\subsection{Динамика открытой среды}
+Уравнение Шредингера дает обратимые решения, т.е. унитарную эволюцию. В этом уравнении $\hat{H}$ полагается известным в любой момент времени, при описании взаимодействия выбранной подсистемы (например, трансмона) с внешней средой затруднительно точно описать поведение внешней среды, так как внешней средой по сути является весь остальной мир. Однако, в качестве приближения зачастую можно выбрать какую-то модельную систему, хорошо соотносящуюся с экспериментом \textbf{[ссылка]}. 
+\newline
+\paragraph{Матрица плотности}
+Для описания динамики подсистемы в таком случае формализм вектора состояния уже не подходит, необходимо использовать его обобщение - \textit{матрицу плотности} $\hat{\rho}$. Подробнее об этом изложено в \textbf{[ссылка]}. Каждому состоянию подсистемы, описываемому волновой функцией, соответствует \textit{чистое} состояние матрицы плотности. Если же данному состояние, описываемое $\hat{\rho}$ нельзя сопоставить вектор состояния, то такое состояние называют \textit{смешанным}. Средние значения операторов для состояния $\hat{\rho}$ находятся следующим образом :
+$$ \langle \hat{A} \rangle = tr \left(\hat{\rho} \hat{A} \right) $$
+ 
+Уравнение Шредингера на эволюцию волновой функции $\psi$ заменяется \textit{уравнением Лиувилля-фон-Нейманна} на матрицу плотности $\hat{\rho}$
+\begin{equation}
+i \hbar \frac{\partial}{\partial t} \hat{\rho} = \left[ \hat{H}, \hat{\rho} \right]
+\label{eq:neumann-equation}
+\end{equation}  
+Это уравнение все еще описывает унитарную эволюцию системы. Чтобы получить неунитарную эволюцию \textit{подсистемы}, воспользуемся уравнением Линблада.
+\paragraph{Уравнение эволюции в форме Линблада}
+Для описания подсистемы используется понятие взятия \textit{частичного следа} и \textit{сокращенной матрицы плотности}: 
+\[
+\hat \rho_S = \pTr{E}{\hat \rho_{SE}} \equiv \sum_i \bra{i}_E \hat \rho_{SE} \ket{i}_E \ \Leftrightarrow \ [\hat \rho_S]_{n, m} = \sum_i \bra{n}_S \! \otimes\! \bra{i}_E\ \hat \rho_{SE}\ \ket{i}_E\!\otimes\! \ket{m}_S
+\] 
+Далее, исходный гамильтониан включает как рассматриваемую подсистему $\hat{H}_S$, так и окружение $\hat{H}_E$ и взаимодействие с ним $\hat{H}_I$:
+\begin{equation}
+\hat{H}_{SE} = \hat{H}_S \otimes \mathbbm{\hat 1}_E + \mathbbm{\hat 1}_S \otimes \hat{H}_E + \hat{H}_I. 
+\end{equation}
+Пренебрегая влиянием подсистемы на изменения состояния окружающей среды и считая, что у нее нет ``эффекта памяти'' (Марковское приближение), получим уравнение в форме Линблада:
+\begin{equation}
+ \frac{\partial}{\partial t}\hat \rho_s = 
+ \frac{i}{\hbar}\sbrkt{\hat \rho_s, \mathcal{\hat H}_s} + \sum_k \frac{\gamma_k}{2} \mathcal{D}\sbrkt{\mathcal{\hat O}_k}\hat \rho_s,
+\label{eq:linbladian-equation}
+\end{equation}
+где $\mathcal{D}$ - линбладовский супероператор:
+\begin{equation}
+\mathcal{D}\sbrkt{\mathcal{\hat O}_k}\hat \rho_s \equiv 2 \mathcal{\hat O}_k \hat \rho_s \mathcal{\hat O}_k^\dag -  \left\{ \mathcal{\hat O}_k^\dag \mathcal{\hat O}_k, \hat \rho_s \right\}  
+\label{eq:linbladian-superoperator}
+\end{equation}
+Коэффициенты $\gamma_k$, определяющие скорость распада, и операторы $\mathcal{\hat O}_k$ выводятся отдельно для каждой модели окружения, однако, вид уравнения сохраняется \textbf{[ссылка на Линблада]}.
+
+\subsection{Релаксация и дефазировка кубита}
+
+
+
+
+
+
+
+
 
 
 
