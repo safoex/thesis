@@ -16,12 +16,14 @@
 
 
 \graphicspath{{../Pictures/}}
+\graphicspath{{../Pictures2/}}
+
 %beamer  theme's used to be here :)
 \usetheme{mipt_beamer}
 \usefonttheme[onlymath]{serif}
 
 \title{Исследование сверхпроводящих потоковых кубитов}
-\author{Федоров~Г. П. Группа 125. \quad Научный руководитель: Рязанов В.В.}
+\author{Сафронов~Е.~С. Группа 325. \quad Научный руководитель: Шульга~К.В.}
 \date{\today}
 
 \setlength{\jot}{15pt}
@@ -49,18 +51,121 @@
 
 \frame[plain]{\tableofcontents}
 
-\section{Теоретические сведения}
-\subsection{Квантовые биты}
+\section{Основы}
+\subsection{Кубит и его представления}
 \begin{frame}[c]\frametitle{\secname}\framesubtitle{\subsecname}
+
 \begin{columns}[c]
-\column{0.5\textwidth}
+\column{0.35\textwidth}
 \centering
-\includegraphics[width=0.7\textwidth]{bloch_deph}
+\includegraphics[width=0.95\textwidth]{bloch_sphere_dissipative}
 
-\vspace{0.2cm}
-Процесс дефазировки, изображенный на сфере Блоха
+Диссипативная траектория на сфере Блоха
 
-\column{0.5\textwidth}
+\column{0.05\textwidth}
+\vspace{5cm}
+$\leftarrow$
+\column{0.23 \textwidth}
+\centering
+\begin{gather*}
+\hat \rho = \frac{1}{2}(\mathbbm{\hat 1} + a\hat \sigma_x+b\hat \sigma_y + c\hat \sigma_z)
+\end{gather*}
+\begin{gather*}
+\ket{\psi} = \alpha \ket{e} + \beta \ket{g}
+\end{gather*}
+
+\includegraphics[width=0.8\textwidth]{two_level_transmon}
+\vspace{2cm}
+\column{0.05 \textwidth}
+\vspace{-0.8cm}
+$\in$
+
+
+\column{0.27\textwidth}
+\centering
+\includegraphics[width=0.8\textwidth]{many_level_transmon}
+
+\vspace{0.1cm}
+``Искусственный атом''
+
+\end{columns}
+\end{frame}
+
+\subsection{Операции над кубитами}
+\begin{frame}[c]\frametitle{\secname}\framesubtitle{\subsecname}
+
+
+\end{frame}
+
+
+\subsection{Источники ошибок}
+\begin{frame}[c]\frametitle{\secname}\framesubtitle{\subsecname}
+
+
+\end{frame}
+
+
+\subsection{Система из двух кубитов}
+\begin{frame}[c]\frametitle{\secname}\framesubtitle{\subsecname}
+
+
+\end{frame}
+
+
+\section{Методы}
+
+\subsection{N-уровневая модель трансмона}
+\begin{frame}[c]\frametitle{\secname}\framesubtitle{\subsecname}
+
+
+\end{frame}
+
+\subsection{DRAG, Half-Derivative}
+\begin{frame}[c]\frametitle{\secname}\framesubtitle{\subsecname}
+
+
+\end{frame}
+
+\subsection{GRAPE}
+\begin{frame}[c]\frametitle{\secname}\framesubtitle{\subsecname}
+
+
+\end{frame}
+
+\section{Результаты}
+\subsection{Оптимизация однокубитных импульсов}
+\begin{frame}[c]\frametitle{\secname}\framesubtitle{\subsecname}
+
+
+\end{frame}
+
+\subsection{Оптимизация однокубитных импульсов}
+\begin{frame}[c]\frametitle{\secname}\framesubtitle{\subsecname}
+
+
+\end{frame}
+
+\subsection{Controlled Phase gate}
+\begin{frame}[c]\frametitle{\secname}\framesubtitle{\subsecname}
+
+
+\end{frame}
+
+\subsection{Controlled NOT gate}
+\begin{frame}[c]\frametitle{\secname}\framesubtitle{\subsecname}
+
+
+\end{frame}
+
+\section{Заключение}
+\begin{frame}[c]\frametitle{\secname}\framesubtitle{\subsecname}
+
+
+\end{frame}
+
+\iffalse
+
+
 Состояние классического бита:
 \begin{equation*}
 0\ \text{или}\ 1
@@ -72,8 +177,7 @@
 a^2 + b^2 + c^2 \in [0, 1]\\
 \mathbf{r} = \rbrkt{\begin{matrix}a\\ b\\ c \end{matrix}} -\text{вектор внутри единичного шара}
 \end{gather*}
-\end{columns}
-\end{frame}
+
 
 
 
@@ -574,5 +678,5 @@ $S_{21} \propto Tr\left[\hat \rho_s\ \hat a \otimes \mathbbm{\hat 1}_q\right]$
 \includegraphics[width=0.9\textwidth]{Rabi_anticrossing_far_dyn}
 \end{columns}
 \end{frame}
-
+\fi
 \end{document}
