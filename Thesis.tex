@@ -7,6 +7,8 @@
     \usepackage{subcaption}
     \captionsetup[subfigure]{justification=centering}
     \usepackage{wrapfig}
+    \usepackage{multirow}
+    \usepackage{units}
    	\usepackage[superscript,biblabel]{cite}
     \usepackage[font=small,labelfont=bf, justification=centering]{caption}
     \usepackage{abstract}
@@ -15,6 +17,7 @@
     \usepackage{bbm}
     \usepackage{bm}
     \usepackage{cleveref}
+    \usepackage{bbold}
     \setlength{\parskip}{0.1cm}   
 	\setlength{\parindent}{0.7cm}
     \usepackage{graphicx} % Used to insert images
@@ -553,8 +556,181 @@ $$
 \fi
 
 \subsection{Утечки на более высокие уровни}
-Другой нежелательный (чаще всего) эффект, заключающийся в возбуждении более высоких уровней, не связан со взаимодействием с окружением кубита. Однако, он может проявиться при слишком большой амплитуде поля $f$ в (\ref{eq:ham-qubit-2d-field}). В пункте \ref{chap:transmon} было сказано, что величина ангармонизма задает минимально время операций, осуществляемых с помощью микроволновых импульсов. Поясним теперь суть этого утверждения. При $f > 0$ возможны переходы в области порядка $\omega \pm f$, значит, при $f \sim \alpha$ возможны переходы $\ket{1} \rightarrow \ket{2}$ с энергией $\omega + \alpha$. 
-\texttt{abcd x = y abcd}
+Другой нежелательный (чаще всего) эффект, заключающийся в возбуждении более высоких уровней, не связан со взаимодействием с окружением кубита. Однако, он может проявиться при слишком коротком времени импульса и соответственно большой амплитуде поля $f$ в (\ref{eq:ham-qubit-2d-field}). В пункте \ref{chap:transmon} было сказано, что величина ангармонизма задает минимально время операций, осуществляемых с помощью микроволновых импульсов. Поясним теперь суть этого утверждения. Если у нас есть импульс продолжительностью конечной продолжительности $\tau$, то у него будет конечная ширина спектра $\Delta \omega$, из-за которой возможны переходы на более высокие уровни:
+\begin{gather*}
+	\Delta \omega \cdot \tau \sim 1, \\
+	f \cdot \tau \sim \pi \sim 1 \rightarrow \\
+	f_\omega \left(\omega_{01} - \Delta \omega \right) \neq 0 \rightarrow \\
+	\tau \sim \frac{1}{f} \sim \frac{1}{\left| \omega_{01} - \omega_{12} \right|} \rightarrow \text{утечки вида} \ket{1} \longrightarrow \ket{2}.
+\end{gather*}
+Так же возможны двухфотонные переходы \textbf{[ссылка]} при 
+\begin{gather*}
+\tau \sim \frac{2}{\left| \omega_{01} - \omega_{12} \right|},
+\end{gather*}
+но их вероятность (???) меньше, чем однофотонных.
+\newline
+Для борьбы с этими утечками наиболее простым подходом является изменение формы импульса, чтобы сжать его фурье-образ вокруг несущей частоты. Две самые популярные формы импульса - гауссова и тангенциальная:
+\begin{gather*}
+f_{tanh} = A \left( \tanh \left( \frac{t-a}{\sigma} \right) - \tanh \left( \frac{t-b}{\sigma} \right) \right), \\
+f_{gauss} = \frac{A}{\sqrt{2 \pi}}  \exp\frac{ \left( t - c\right)^2}{\sigma} 
+\end{gather*} 
+
+В таком случае просто считается набег фазы в [не здесь, дописать] (\ref{eq:ham-qubit-2d-field},~\ref{eq:rwa-2d}):
+
+\begin{gather*}
+\phi_{tanh} = A \left( b - a \right), \\
+\phi_{gauss} = A \sigma
+\end{gather*}
+
+Однако, в обоих случаях $f(t)$ хоть и быстро затухает за пределами $(a,b)$ и $(c-\sigma,c+\sigma)$ соответственно, не равна нулю для любого $t$. Чтобы избавиться от ошибок, связанных с реальной конечной продолжительностью, импульсы обрезают:
+\begin{gather*}
+f_{tanh} = A \left( \tanh \left( \frac{t-a}{\sigma} \right) - \tanh \left( \frac{t-b}{\sigma} \right) \right) \cdot \eta \left(t, \frac{a+b}{2}, \xi \right) - B, \\
+f_{gauss} = \frac{A}{\sqrt{2 \pi}}  \exp\frac{ \left( t - c\right)^2}{\sigma} \cdot \eta \left(t, c, \xi \right) - B,
+\end{gather*}
+где $\cdot \eta \left(t, c, \xi \right) = \theta(t-c+\frac{\xi}{2}) - \theta(t-c-\frac{\xi}{2})$ - обрезает в точках $c-\frac{\xi}{2}$, $c+\frac{\xi}{2}$,\newline а $B =f_{tanh,gauss}(c-\frac{\xi}{2}) = f_{tanh,gauss}(c+\frac{\xi}{2})$.
+
+
+\section{Квантовые вентили и их реализации}
+В этой главе будут рассмотрены популярные однокубитные и двухкубитные вентили и некоторые способы их реализации.
+\subsection{Квантовые вентили}
+Квантовый вентиль или гейт (англ. ``gate'') - операция над состоянием кубита(-ов), преобразующая его по определенному закону. \newline
+Так как состояние кубитной системы (или подсистемы) описывается волновой функцией в виде вектора состояния из двух чисел, удобно описывать однокубитные квантовые вентили в виде \textit{матриц} $2 \times 2$, а N-кубитные в виде матриц $N \times N$. Примеры:
+\begin{gather}
+\mathbf{H} = \frac{1}{\sqrt{2}}
+\begin{pmatrix}
+1 & 1 \\
+1 & -1
+\end{pmatrix}, \\
+\mathbf{NOT} = 
+\begin{pmatrix}
+0 & 1 \\
+1 & 0
+\end{pmatrix}, 
+\mathbf{Z_\phi} = 
+\begin{pmatrix}
+1 & 0 \\
+0 & \exp \left( i \phi \right)
+\end{pmatrix}, \\
+\mathbf{CNOT} = 
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0 \\
+\end{pmatrix}.
+\end{gather}
+$\mathbf{NOT}$ - логическое отрицание, а $\mathbf{H}$ назван в честь французского ученого Жак Адамара (англ. Hadamard), 
+$\mathbf{CNOT}$ является одним из семейства $\mathbf{C(U)}$ гейтов,
+\begin{gather}
+\mathbf{C ( U )} = 
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & \multicolumn{2}{c}{\multirow{2}{*}{\text{\huge \textbf{U}}}} \\
+0 & 0 & \\
+\end{pmatrix}.
+\end{gather}
+, где $U$ - матрица однокубитного гейта. Суть $\mathbf{C(U)}$ гейта в том, что если один из двух кубитов (управляющий) находится в состоянии $\ket{1}$, то над вторым (управляемым) производится операция $U$. Если управляющий в $\ket{0}$, то -- тождественное. Гейты являются линейными преобразованиями, так что если управляющий кубит находится в суперпозиции состояний $\alpha \ket{0} + \beta \ket{1}$, то на управляемый подействует линейным по $U, \mathcal{1}$ образом.
+\newline
+Предположим, что мы реализовали $\mathbf{CNOT}$ и однокубитные вентили. Но как получить остальные? Вдруг какой-то гейт невозможно представить в виде суперпозиции того же $\mathbf{CNOT}$ и однокубитных вентилей? На этот вопрос отвечает \textit{ теорема Соловей-Китаева} \textbf{[Nielsen M A, Chuang I L Quantum Computation and Quantum Information (Cambridge: Cambridge Univ. Press, 2000)]}, которая утверждает, что достаточно некоторого конечного \textbf{универсального набора} гейтов для того чтобы с любой заданной точностью аппроксимировать любой гейт. Однако, число операций может быть велико. Правила выбора такого универсального набора остаются за пределами данной работы, приведем лишь пример такого набора для двухкубитной системы: 
+\begin{gather}
+\mathbf{CNOT}, \mathbf{H}, \mathbf{Z}_{\pi/4}
+\label{eq:universal-set} 
+\end{gather}
+\subsection{Реализация однокубитных импульсов}
+Для сверхпроводниковых кубитов однокубитные импульсы 
+\begin{gather}
+\mathbf{X_\phi} = 
+\exp \left(-i \frac{\sigma_x \phi}{2} \right), \quad \quad
+\mathbf{Y_\phi} = 
+\exp \left(-i \frac{\sigma_y \phi}{2} \right)
+\end{gather}
+реализовываются с помощью осцилляций Раби (\ref{eq:rwa-2d}). Действительно, достаточно поставить условие
+\begin{gather*}
+\cos \varphi = 1, \int f dt = \phi
+\end{gather*}
+чтобы получить $\mathbf{X_\phi}$ гейт. Аналогично для $\mathbf{Y_\phi}$.
+$\mathbf{R_Z(\phi)}$ можно реализовать, используя в (\ref{eq:ham-qubit-2d-field}) частоту импульса, отличную от резонансной. Другой способ -  изменив на время $\hbar \omega_{ge}$. Заметим также, что 
+\begin{gather*}
+\mathbf{NOT} = \mathbf{X_\pi},\quad \quad \mathbf{H} = \mathbf{X_\pi}\mathbf{Y}_{\pi/2}.
+\end{gather*} 
+\subsection{Реализация двухкубитных импульсов}
+Здесь ситуация сложнее и подходов гораздо больше. Сущность у всех схожа - необходимо иметь систему, которую можно контролировать, приводя в резонанс с кубитами или одним из кубитов или контролировать энергию связи кубитов. Управление связью кубитов влечет дополнительные экспериментальные трудности и шумы, поэтому в данной работе рассматриваются двухкубитные системы с \textit{фиксированной связью}. 
+\paragraph{Кросс резонанс.} Одним из минималистических способов реализации необходимого $\mathbf{CNOT}$ гейта является использование эффекта, названного \textbf{[rigetti, devoret]} \textit{cross-resonance effect}. Он возникает при взаимодействии микроволного излучения с одним из кубитов. Отличие условий кросс резонанса от обычных однокубитных импульсов в том, что мы подаем импульс на первый кубит не с его резонансной частотой, а с резонансной частотой второго. Этот эффект проявляется для широкого класса связей, в том числе, для емкостной связи двух кубитов. Запишем гамильтониан двухкубитной системы в двухуровневом приближении:
+\begin{gather*}
+\hat{H} = \sum_{i = 1,2} \frac{ \hbar \omega_i }{2} \hat \sigma_i^z + \hbar \omega_{xx} \sigma^x_1 \sigma^x_2 + 
+\sum_{i = 1,2} f_i  \hat{\sigma}^x_i \otimes  \cos \left( \omega^d_i t + \varphi_i \right) 
+\label{eq:2qubit-ham-2d}
+\end{gather*}
+Тогда условия кросс-резонанса запишутся в виде:
+\begin{gather}
+f_1 = f, \quad f_2 = 0, \quad \omega^d_1 = \omega_2
+\label{eq:cross-resonance-conditions}
+\end{gather}
+
+Энергия связи $\hbar \omega_{xx}$ должна быть достаточно малой, чтобы не расщеплять однокубитные состояния. В таком случае базисом этой системы будет тензорное произведение базисов однокубитных подсистем. Ненулевая $\omega_{xx}$ все-таки порождает поправки к уровням энергии системы, однако они будут порядка $\left(\frac{\omega_{xx}}{\Delta} \right)^2, \Delta = \left| \omega_1 - \omega_2 \right|$ и связанными с ними невынужденными осцилляциями во вращающемся базисе (\ref{eq:rotating-frame}) каждого из кубитов при рассмотрении данного гейта можно пренебречь. Подставив условия кросс резонанса (\ref{eq:cross-resonance-conditions}), проведя несколько преобразований базиса (из лабораторного к тому, в котором чаще всего проводятся измерения)  и усредняя быстро осциллирующие члены, получаем \textbf{[rigetti, devoret]}:
+\begin{gather}
+\hat{H}^{eff}_{drive} = 
+\frac{\omega_{xx}}{4} \frac{1}{1 + \left(\Delta / f \right)^2} \times \left( \cos \varphi_1 \sigma^x_1 \sigma^x_2 + \sin \varphi_1 \sigma^x_1 \sigma^y_2 + \frac{\Delta}{f} \cos \varphi_1 ~\mathbf{\sigma^z_1 \sigma^x_2} + \frac{\Delta}{f} \sin \varphi_1 \sigma^z_1 \sigma^y_2 \right) , \\
+\frac{\Delta}{f} \gg 1, \quad \cos \varphi_1 = 1 \Rightarrow
+\hat{H}^{eff}_{drive} \simeq
+\frac{\omega_{xx} f}{4 \Delta} \mathbf{\sigma^z_1 \sigma^x_2}
+\end{gather}
+Таким образом кросс-резонанс эффективно усиливает связь между кубитами (от порядка $\left(\frac{\omega_{xx}}{\Delta} \right)^2$ к линейному) и позволяет получить необходимый для $\mathbf{CNOT}$ гейт -- $\mathbf{\left[ Z X \right]}_{\pi/2}$. Через него $\mathbf{CNOT}$ выражается как 
+\begin{gather}
+\mathbf{CNOT}= \mathbf{\left[ Z I \right]}_{-\pi/2} \mathbf{\left[ Z X \right]}_{\pi/2} \mathbf{\left[ I X \right]}_{-\pi/2},
+\label{eq:CNOT-ZX}
+\end{gather}
+где $\mathbf{\left[ Z I \right]}$ и $\mathbf{\left[ I X \right]}$ - однокубитные операции ($\mathbf{I}$ - идентичный гейт, отсутствие операции над кубитом).
+
+\paragraph{Резонанс с высшими состояниями трансмона.} Другой способ был предложен еще до изобретения трансмона, но он применим и к системе из двух кубитов, если есть возможность управлять $E_J$ одного из кубитов. Здесь уже нельзя ограничиться рассмотрением двухуровневого приближения, так как суть явления состоит в резонансе с $\ket{2}$ одного из кубитов. Точнее, если сначала кубиты \textit{отстроены} друг от друга, т.е. $\omega^{01}_1 \neq \omega^{12}_2$, то для осуществления условий гейта необходимо привести в резонанс $\omega^{01}_1$ с $\omega^{12}_2$ или $\omega^{01}_2$. Так можно получить $\mathbf{CPHASE}$ или $\mathbf{SWAP}-like$ гейты:
+\begin{gather}
+\omega^{01}_1 = \omega^{12}_2 \quad \longrightarrow \quad \mathbf{U}_1 =  \mathbf{CPHASE} = 
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & e^{-i \phi} \\
+\end{pmatrix},\\
+\omega^{01}_1 = \omega^{01}_2 \quad \longrightarrow \quad \mathbf{U}_2  = 
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & \cos \theta_1 & -i \sin \theta_1 & 0 \\
+0 & -i \sin \theta_1 & \cos \theta_1 & 0 \\
+0 & 0 & 0 & e^{-i \theta_2} \\
+\end{pmatrix}
+\end{gather}
+В случае $\mathbf{U}_2$ у нас происходит расщепление всех уровней системы \textbf{[Quantum logic gates for coupled superconducting phase qubi
+ts]}:
+\begin{gather*}
+\ket{\mathbf{0}}  = \ket{00},\\
+\ket{\mathbf{1}}  = \left( \ket{01} - \ket{10} \right) \frac{1}{\sqrt{2}}, \\
+\ket{\mathbf{2}}  = \left( \ket{01} + \ket{10} \right) \frac{1}{\sqrt{2}}, \\
+\ket{\mathbf{3}}  = \cos \theta \left( \ket{02} + \ket{20} \right) \frac{1}{\sqrt{2}} - \sin \theta \ket{11},
+\theta \simeq 0.185.
+\end{gather*}
+Здесь $\ket{\mathbf{i}}$ - собственные состояния системы со связью, $\ket{ij}$ - тензорное произведение собственных состояний однокубитных подсистем, они являются собственными состояними невозмущенной системы . Если до резонанса двухкубитная система была в состоянии $\ket{01}$, то после оно расщепится на $\left( \ket{\mathbf{1}} + \ket{\mathbf{2}} \right) 2^{-1/2}$, каждое из которых будет осциллировать со своей энергией и, следовательно, наберет разную фазу. Отсюда и похожее на $\mathbf{SWAP}$ поведение. 
+\newline{}
+\newline{}
+В случае $\mathbf{CHASE}$ расщепятся только два состояния, так как остальные уровни энергии будут хоть слабо, но отличаться. 
+\begin{gather*}
+\ket{\mathbf{4}}  = \left( \ket{02} - \ket{11} \right) \frac{1}{\sqrt{2}}, \\
+\ket{\mathbf{5}}  = \left( \ket{02} + \ket{11} \right) \frac{1}{\sqrt{2}}
+\end{gather*}
+Но суть от этого не меняется, и состояния по прежнему набирают разную фазу. Оба гейта получаются с помощью дополнительных $\mathbf{Z}$ вращений\textbf{[еще раз ссылка]}. Недостатком такого гейта является фиксированность его продолжительности. Действительно, чтобы на $\ket{02}$ не осталось заселенности, необходимо осуществить ровно половину периода осцилляции. Время $\mathbf{U}_1$ (не считая дополнительных вращений) $\tau_1 = \frac{2 \pi \hbar }{E_\mathbf{5} - E_\mathbf{4}}$, а~время~$\mathbf{U}_2$~ $\tau_2 = \frac{2 \pi k \hbar}{E_5 - E_3}, k \in \mathbb{Z}$.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \iffalse
