@@ -6,6 +6,8 @@
 \usepackage{mathtools}
 \usepackage{appendixnumberbeamer}
 \usepackage{bbm}
+\usepackage{bbold}
+\usepackage{amsmath}
 
 \newcommand{\sbrkt}[1]{\left[ #1 \right]}
 \DeclarePairedDelimiter\bra{\langle}{\rvert}
@@ -14,7 +16,6 @@
 \newcommand{\rbrkt}[1]{\left( #1 \right)}
 \newcommand{\lbrkt}[1]{\left< #1 \right>}
 
-
 \graphicspath{{../Pictures/}}
 \graphicspath{{../Pictures2/}}
 
@@ -22,7 +23,7 @@
 \usetheme{mipt_beamer}
 \usefonttheme[onlymath]{serif}
 
-\title{Исследование сверхпроводящих потоковых кубитов}
+\title{Оптимизация одно- и двухкубитных вентилей для сверхпроводниковых кубитов}
 \author{Сафронов~Е.~С. Группа 325. \quad Научный руководитель: Шульга~К.В.}
 \date{\today}
 
@@ -75,6 +76,9 @@ $\leftarrow$
 \end{gather*}
 
 \includegraphics[width=0.8\textwidth]{two_level_transmon}
+$$
+\hat{H} = \frac{\hbar \omega_{ge}}{2} \hat \sigma_z
+$$
 \vspace{2cm}
 \column{0.05 \textwidth}
 \vspace{-0.8cm}
@@ -83,6 +87,7 @@ $\in$
 
 \column{0.27\textwidth}
 \centering
+\vskip -1cm
 \includegraphics[width=0.8\textwidth]{many_level_transmon}
 
 \vspace{0.1cm}
@@ -93,72 +98,253 @@ $\in$
 
 \subsection{Операции над кубитами}
 \begin{frame}[c]\frametitle{\secname}\framesubtitle{\subsecname}
+\begin{columns}[c]
+\column{0.3 \textwidth}
+\centering
+\textbf{Вентили} 
+\newline
+\underline{Однокубитные}
+$$
+\mathbf{H} = \frac{1}{\sqrt{2}}
+\begin{pmatrix}
+1 & 1 \\
+1 & -1
+\end{pmatrix}
+= \mathbf{X}_{\pi} \mathbf{Y}_{\pi / 2}
+$$
+$$
+\mathbf{NOT} = 
+\begin{pmatrix}
+0 & 1 \\
+1 & 0
+\end{pmatrix}
+= \mathbf{X}_{\pi} 
+$$
+\underline{Двухкубитные}
+$$
+\mathbf{CNOT} = 
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0 \\
+\end{pmatrix}
+$$
 
-
+\column{0.3 \textwidth}
+$$
+\ket{1} = \mathbf{NOT}~ \ket{0}
+$$
+$$
+\downarrow
+$$
+\centering
+Унитарная эволюция, $\mathbf{NOT} = U$ 
+$$\psi(t) = U(t) \psi(0)$$
+$$ \hat{H} \rightarrow \hat{H} + \hat{H}_{drive} $$
+\column{0.3 \textwidth}
+\centering
+\textbf{Импульсы}
+$$\hat{H}_{drive} = f \hat \sigma_x \cos \omega_{ge} t$$
+$$ \downarrow $$
+\begin{gather*} 
+U \simeq exp\left( -i \frac{1}{2} \hat \sigma_x \int f dt \right),\\
+U = \mathbf{X}_{\pi},\\
+\text{при}~\int f dt = \pi
+\end{gather*}
+\end{columns}
 \end{frame}
 
 
 \subsection{Источники ошибок}
 \begin{frame}[c]\frametitle{\secname}\framesubtitle{\subsecname}
+\begin{columns}[c]
+\column{0.3 \textwidth}
+\centering
+\underline{Утечки на более высокие уровни}
+$$ 
+f \sim \omega_{01} - \omega{12}
+$$
 
+\includegraphics[width = 1 \textwidth]{non_ideal_pi2.pdf}
+\vspace{0.1cm}
+Неидельный и идельный $\mathbf{X}_{\pi}$ гейт
+
+\column{0.7 \textwidth}
+\centering
+\underline{Взаимодействие с окружением}
+$$
+ \frac{\partial}{\partial t}\hat \rho_s = 
+ \frac{i}{\hbar}\sbrkt{\hat \rho_s, \mathcal{\hat H}_s} + \left(\gamma \mathcal{D}\sbrkt{\hat{C}} + \frac{\gamma_\phi}{2} \mathcal{D}\sbrkt{\hat{C_\phi}}  \right) \hat \rho_s
+$$
+\\
+$\hat C$ - \textbf{релаксация} с потерей энергии, 
+$\hat C_\phi$ - дефазировка \\
+$\gamma_\phi \sim 0$ у трансмона 
+\\
+\vspace{1cm}
+\underline{Паразитные члены в $\hat{H}_{drive}$}
+\begin{gather}
+\hat{H}_{drive} = f \left(\hat \sigma_x + \delta \hat \sigma_y \right) \cos \omega_{ge} t, \\
+\delta \ll 1
+\end{gather}
+\end{columns}
 
 \end{frame}
 
-
-\subsection{Система из двух кубитов}
-\begin{frame}[c]\frametitle{\secname}\framesubtitle{\subsecname}
-
-
-\end{frame}
 
 
 \section{Методы}
 
-\subsection{N-уровневая модель трансмона}
+\subsection{Модели кубитов}
 \begin{frame}[c]\frametitle{\secname}\framesubtitle{\subsecname}
+\begin{columns}[c]
+\column{0.5 \textwidth}
+\centering
+\underline{Два кубита}\\ 
+с емкостной связью
+\begin{gather*}
+\hat{H}_i = \frac{ \hbar \omega_i }{2} \hat \sigma_i^z,\\
+\hat{H} = \hat{H}_1 \otimes \mathbb{1} + \mathbb{1} \otimes \hat{H}_2 + \omega_{xx} \sigma^x_1 \sigma^x_2 + \\
+\sum_{i = 1,2} f_i  \hat{\sigma}^x_i \otimes  \cos \left( \omega^d_i t + \varphi_i \right) 
+\end{gather*}
+\begin{gather*}
+f_1 \neq 0, f_2 = 0, w^d_1 = w_2 
+\end{gather*}
+- кросс-резонанс
+\column{0.5 \textwidth}
+\centering
+\underline{N-уровневая}  модель трансмона 
+\begin{gather*}
+\hat{H} = 4 E_C \sum_{n = -N}^{N}\hat n ^2 \left| n \right>\left< n \right|  - \\
+E_J \sum_{n = -N}^{N}
+\left( 
+\left| n+1 \right>\left< n   \right| +
+\left| n   \right>\left< n+1 \right|
+\right), \\
+\hat{H}_{drive} = f \hat{n} \cos \left( \omega_d t + \varphi\right),\\
+E_J \gg E_C
+\end{gather*}
 
+\end{columns}
 
 \end{frame}
 
-\subsection{DRAG, Half-Derivative}
+\subsection{Оптимизация ошибок из-за утечек на верхние уровни}
 \begin{frame}[c]\frametitle{\secname}\framesubtitle{\subsecname}
 
 
+\begin{gather*}
+f \cos \omega_{ge} t \longrightarrow f_x(t) \cos \omega_d t  + f_y(t) \sin \omega_d t,\quad \quad
+\omega_d = \omega_{ge} + \delta(t)  
+\end{gather*}
+
+\begin{columns}[c]
+\column{0.6 \textwidth}
+\centering
+\underline{Аналитически}
+\vspace{-0.2cm}
+\begin{gather*}
+\hat{H}^R = ... + \sum_{i = 1,2} \frac{\mathcal{E}^y(t)}{2} \lambda_i \sigma^y_{i-1,i} 
+\end{gather*}
+$\psi_V \rightarrow V(t) \psi$, так что
+\begin{gather*}
+\hat{H}^R = ... + \sum_{i = 1,2} \left[\frac{\dot{\mathcal{E}}^x(t)}{2 \Delta} +   \frac{\mathcal{E}^y(t)}{2 } \right] \lambda_i \sigma^y_{i-1,i} 
+\end{gather*}
+\underline{DRAG} : учет высших порядков и др. слагаемых\\
+\underline{\textbf{H}alf-\textbf{D}erivative} : $\mathcal{E}^y = - \frac{\dot{\mathcal{E}}^x}{2 \Delta}$
+\column{0.4 \textwidth}
+\centering
+\vspace{-0.2cm}
+
+\underline{Численно}
+\\\
+\vskip 0.01cm
+\underline{GRAPE}
+\begin{gather*}
+f_{x,y}(t) = \sum_i f_{x,y}^i \eta(t,t_{i-1},t_i),\\
+\eta(t,a,b) = 
+	\begin{cases}
+		1, t \in \left( a, b \right) \\
+		0,  \text{иначе}
+	\end{cases}
+\end{gather*}
+$f_{x,y}(t)$ - кусочно-постоянные,
+\newline
+$\delta(t) = 0$
+\end{columns}
 \end{frame}
 
-\subsection{GRAPE}
-\begin{frame}[c]\frametitle{\secname}\framesubtitle{\subsecname}
-
-
-\end{frame}
 
 \section{Результаты}
 \subsection{Оптимизация однокубитных импульсов}
 \begin{frame}[c]\frametitle{\secname}\framesubtitle{\subsecname}
+\begin{columns}[c]
+\column{0.5\textwidth}
+\centering
+пример \underline{GRAPE}
+\includegraphics[width = 0.8\textwidth]{grape_pulse}
+\vspace{0.1cm}
+\\
+пример \underline{HD}
+\includegraphics[width = 0.8\textwidth]{hd_pulse}
 
+\column{0.5\textwidth}
+\includegraphics[width = 0.95\textwidth]{optimization_results}
+
+\end{columns}
 
 \end{frame}
 
-\subsection{Оптимизация однокубитных импульсов}
-\begin{frame}[c]\frametitle{\secname}\framesubtitle{\subsecname}
 
-
-\end{frame}
-
-\subsection{Controlled Phase gate}
-\begin{frame}[c]\frametitle{\secname}\framesubtitle{\subsecname}
-
-
-\end{frame}
 
 \subsection{Controlled NOT gate}
 \begin{frame}[c]\frametitle{\secname}\framesubtitle{\subsecname}
+\begin{columns}[c]
+\column{0.4 \textwidth}
 
+\includegraphics[width = 0.9\textwidth]{CNOT_fidelity_time}
+\vspace{0.1cm}
+$\kappa \rightarrow \infty$ увеличивает время импульса и потери из-за релаксации
+\column{0.6 \textwidth}
+Учет \underline{малых слагаемых} в гамильтониане \\  и \underline{релаксации}
+
+\begin{gather*}
+\hat{H}^{eff}_{drive} = 
+\frac{\omega_{xx}}{4} \frac{1}{1 + \kappa^2}  \left( \sigma^x_1 \sigma^x_2 + \kappa ~\mathbf{\sigma^z_1 \sigma^x_2} \right) , \\
+\kappa = \frac{\left|w_1 - w_2 \right|}{f} \gg 1 \Rightarrow
+\hat{H}^{eff}_{drive} \simeq
+\frac{\omega_{xx} f}{4 \left|w_1 - w_2 \right|} \mathbf{\sigma^z_1 \sigma^x_2}
+\end{gather*}
+\begin{gather*}
+\mathbf{CNOT} = \left[ ZI \right] ^{-1/2} \left[ ZX \right]^{1/2} \left[ IX \right]^{-1/2},\\
+\left[ ZI \right], \left[ IX \right] \text{- однокубитные}
+\end{gather*}
+
+\end{columns}
 
 \end{frame}
 
+\subsection{}
 \section{Заключение}
-\begin{frame}[c]\frametitle{\secname}\framesubtitle{\subsecname}
+\begin{frame}[c]\frametitle{\secname}\framesubtitle{Результаты и планы}
+\centering
+Главные результаты
+\begin{enumerate}
+\item Разработка фреймворка библиотеки QuTiP для $N$-уровневой модели трансмона и связанных с ней расчетов.  
+
+\item Численное моделирование различных одно- и двухкубитных систем с помощью этого фреймворка, оптимизация одно- и двухкубитных вентилей.
+\end{enumerate}
+
+Планы на будущее
+
+\begin{enumerate}
+
+\item Развитие и поддержка фреймворка для необходимых неохваченных случаев.
+
+\item Экспериментальная проверка оптимизированных импульсов.
+
+\end{enumerate}
 
 
 \end{frame}
