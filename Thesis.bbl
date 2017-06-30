@@ -31,7 +31,7 @@
 \newblock 1995. \BibDash
 \newblock Vol. 270, no. 5234. \BibDash
 \newblock P.~255--261. \BibDash
-\newblock Access mode:
+\newblock URL:
   \BibUrl{http://www.sciencemag.org/content/270/5234/255.abstract}.
 
 \bibitem{DiVincenzo2000}
@@ -58,8 +58,7 @@
 \newblock 2009. \BibDash
 \newblock Vol. 2009, no. T137. \BibDash
 \newblock P.~14003. \BibDash
-\newblock Access mode:
-  \BibUrl{http://stacks.iop.org/1402-4896/2009/i=T137/a=014003}.
+\newblock URL: \BibUrl{http://stacks.iop.org/1402-4896/2009/i=T137/a=014003}.
 
 \bibitem{Cirac1995}
 \selectlanguageifdefined{english}
@@ -98,7 +97,7 @@
 \BibEmph{Devoret~M.~H.} {Quantum fluctuations in electrical circuits}~//
   \BibEmph{Les Houches, Session LXIII}. \BibDash
 \newblock 1995. \BibDash
-\newblock Access mode:
+\newblock URL:
   \BibUrl{http://www.physique.usherb.ca/tremblay/cours/PHY-731/Quantum\_circuit\_theory-1.pdf}.
 
 \bibitem{Clarke2008}
@@ -108,19 +107,7 @@
 \newblock 2008. \BibDash
 \newblock Vol. 453, no. 7198. \BibDash
 \newblock P.~1031--42. \BibDash
-\newblock Access mode: \BibUrl{http://www.ncbi.nlm.nih.gov/pubmed/18563154}.
-
-\bibitem{Orlando1999}
-\selectlanguageifdefined{english}
-{Superconducting persistent-current qubit}~/ T.~Orlando, J.~Mooij, Lin~Tian
-  et~al.~//
-  \href{http://dx.doi.org/10.1103/PhysRevB.60.15398}{\BibEmph{Physical Review
-  B}}. \BibDash
-\newblock 1999. \BibDash
-\newblock Vol.~60, no.~22. \BibDash
-\newblock P.~15398--15413. \BibDash
-\newblock Access mode:
-  \BibUrl{http://link.aps.org/doi/10.1103/PhysRevB.60.15398}.
+\newblock URL: \BibUrl{http://www.ncbi.nlm.nih.gov/pubmed/18563154}.
 
 \bibitem{Koch2007}
 \selectlanguageifdefined{english}
@@ -139,7 +126,7 @@
 \newblock 2014. \BibDash
 \newblock Vol.~5. \BibDash
 \newblock P.~5146. \BibDash
-\newblock Access mode: \BibUrl{http://www.ncbi.nlm.nih.gov/pubmed/25312205}.
+\newblock URL: \BibUrl{http://www.ncbi.nlm.nih.gov/pubmed/25312205}.
 
 \bibitem{Clarke2006}
 \selectlanguageifdefined{english}
@@ -172,29 +159,6 @@ Resonance Fluorescence of a Single Artificial Atom~/ O.~Astafiev,
 \newblock P.~5571. \BibDash
 \newblock arXiv:1407.2324v1.
 
-\bibitem{Schrieffer1999}
-\selectlanguageifdefined{english}
-\BibEmph{Schrieffer~J.~R., Tinkham~M.} {Superconductivity}~//
-  \href{http://dx.doi.org/10.1103/RevModPhys.71.S313}{\BibEmph{Reviews Of
-  Modern Physics}}. \BibDash
-\newblock 1999. \BibDash
-\newblock Vol.~71. \BibDash
-\newblock P.~S313--S317.
-
-\bibitem{GL1950}
-\selectlanguageifdefined{english}
-\BibEmph{Ginzburg~V.L., Landau~L.D.} On the theory of superconductivity~//
-  \BibEmph{Zh. Eksp. Teor. Fiz. 20, 1064}. \BibDash
-\newblock 1950.
-
-\bibitem{Gorkov1959}
-\selectlanguageifdefined{english}
-\BibEmph{Gorkov~L.~P.} Microscopic derivation of the Ginzburg-Landau equations
-  in the theory of superconductivity~// \BibEmph{Sov. Phys. JETP}. \BibDash
-\newblock 1959. \BibDash
-\newblock Vol.~9, no.~6. \BibDash
-\newblock P.~1364--1367.
-
 \bibitem{Josephson1964}
 \selectlanguageifdefined{english}
 \BibEmph{Josephson~B.} {Coupled Superconductors}~//
@@ -213,209 +177,37 @@ Resonance Fluorescence of a Single Artificial Atom~/ O.~Astafiev,
 \newblock Vol.~76. \BibDash
 \newblock P.~411--469.
 
-\bibitem{Robertson2006}
+\bibitem{Orlando1999}
 \selectlanguageifdefined{english}
-{Quantum theory of three-junction flux qubit with non-negligible loop
-  inductance: Towards scalability}~/ T.~Robertson, B.~Plourde, P.~Reichardt
+{Superconducting persistent-current qubit}~/ T.~Orlando, J.~Mooij, Lin~Tian
   et~al.~//
-  \href{http://dx.doi.org/10.1103/PhysRevB.73.174526}{\BibEmph{Physical Review
+  \href{http://dx.doi.org/10.1103/PhysRevB.60.15398}{\BibEmph{Physical Review
   B}}. \BibDash
-\newblock 2006. \BibDash
-\newblock Vol.~73, no.~17. \BibDash
-\newblock P.~174526. \BibDash
-\newblock Access mode:
-  \BibUrl{http://link.aps.org/doi/10.1103/PhysRevB.73.174526}.
+\newblock 1999. \BibDash
+\newblock Vol.~60, no.~22. \BibDash
+\newblock P.~15398--15413. \BibDash
+\newblock URL: \BibUrl{http://link.aps.org/doi/10.1103/PhysRevB.60.15398}.
 
-\bibitem{Johansson}
+\bibitem{Lucero2010}
 \selectlanguageifdefined{english}
-\BibEmph{Johansson~R.} Reproduce: Orlando et al., Phys. Rev. B 60, 15398
-  (1999). \BibDash
-\newblock Access mode:
-  \BibUrl{http://nbviewer.ipython.org/github/jrjohansson/reproduced-papers/blob/master/Reproduce-PRB-60-15398-1999-Orlando.ipynb}.
-
-\bibitem{bishop2009}
-\selectlanguageifdefined{english}
-Nonlinear response of the vacuum Rabi resonance~/ L.~S.~Bishop, J.~M.~Chow,
-  J.~Koch et~al.~// \BibEmph{Nature Physics}. \BibDash
-\newblock 2009. \BibDash
-\newblock Vol.~5, no.~2. \BibDash
-\newblock P.~105--109.
-
-\bibitem{carmichael1999}
-\selectlanguageifdefined{english}
-\BibEmph{Carmichael~H.~J.} Quantum Statistical Methods in Quantum Optics 1:
-  Master Equations and Fokker-Planck Equations. \BibDash
-\newblock Springer Verlag, 1999.
-
-\bibitem{rivas2010}
-\selectlanguageifdefined{english}
-Markovian master equations: a critical study~/ A.~Rivas, A.~D.~K.~Plato,
-  S.~F.~Huelga, M.B.~Plenio~// \BibEmph{New Journal of Physics}. \BibDash
-\newblock 2010. \BibDash
-\newblock Vol.~12, no.~11. \BibDash
-\newblock P.~113032.
-
-\bibitem{lindblad1976}
-\selectlanguageifdefined{english}
-\BibEmph{Lindblad~G.} {On the generators of quantum dynamical semigroups}~//
-  \href{http://dx.doi.org/10.1007/BF01608499}{\BibEmph{Communications in
-  Mathematical Physics}}. \BibDash
-\newblock 1976. \BibDash
-\newblock Vol.~48, no.~2. \BibDash
-\newblock P.~119--130. \BibDash
-\newblock Access mode: \BibUrl{http://link.springer.com/10.1007/BF01608499}.
-
-\bibitem{leggett1987}
-\selectlanguageifdefined{english}
-Dynamics of the dissipative two-state system~/ A.~J.~Leggett, A.~T.~Dorsey,
-  M.~P.~A.~Fisher et~al.~// \BibEmph{Reviews of Modern Physics}. \BibDash
-\newblock 1987. \BibDash
-\newblock Vol.~59, no.~1. \BibDash
-\newblock P.~1.
-
-\bibitem{hsu1987}
-\selectlanguageifdefined{english}
-\BibEmph{Hsu~D., Skinner~J.~L.} General quantum mechanical theory of pure
-  dephasing~// \BibEmph{Journal of luminescence}. \BibDash
-\newblock 1987. \BibDash
-\newblock Vol.~37, no.~6. \BibDash
-\newblock P.~331--337.
-
-\bibitem{Jerger2013}
-\selectlanguageifdefined{english}
-\BibEmph{Jerger~M.} Experiments on Superconducting Qubits Coupled to Microwave
-  Resonators~: PhD Thesis~/ M.~Jerger~; Karlsruhe Institute of Technology.
+Reduced phase error through optimized control of a superconducting qubit~/
+  Erik~Lucero, Julian~Kelly, Radoslaw~C.~Bialczak et~al.~//
+  \href{http://dx.doi.org/10.1103/PhysRevA.82.042339}{\BibEmph{Phys. Rev. A}}.
   \BibDash
-\newblock 2013.
+\newblock 2010. \BibDash Oct. \BibDash
+\newblock Vol.~82. \BibDash
+\newblock P.~042339. \BibDash
+\newblock URL: \BibUrl{https://link.aps.org/doi/10.1103/PhysRevA.82.042339}.
 
-\bibitem{Bishop2010}
+\bibitem{Steffen2006}
 \selectlanguageifdefined{english}
-\BibEmph{Bishop~L.} Circuit Quantum Electrodynamics~: Doctoral Thesis~/
-  L.~Bishop~; Yale Institute. \BibDash
-\newblock 2010.
-
-\bibitem{Bauer2006}
-\selectlanguageifdefined{english}
-\BibEmph{Bauer~D.} Theory of intense laser-matter interaction. \BibDash
-\newblock Max-Planck-Institut für Kernphysik, 2006. \BibDash
-\newblock P.~106.
-
-\bibitem{braak2011}
-\selectlanguageifdefined{english}
-\BibEmph{Braak~D.} Integrability of the Rabi model~// \BibEmph{Physical review
-  letters}. \BibDash
-\newblock 2011. \BibDash
-\newblock Vol. 107, no.~10. \BibDash
-\newblock P.~100401.
-
-\bibitem{niemczyk2010}
-\selectlanguageifdefined{english}
-Circuit quantum electrodynamics in the ultrastrong-coupling regime~/
-  T.~Niemczyk, F.~Deppe, H.~Huebl et~al.~// \BibEmph{Nature Physics}. \BibDash
-\newblock 2010. \BibDash
-\newblock Vol.~6, no.~10. \BibDash
-\newblock P.~772--776.
-
-\bibitem{forn2010}
-\selectlanguageifdefined{english}
-Observation of the Bloch-Siegert shift in a qubit-oscillator system in the
-  ultrastrong coupling regime~/ P.~Forn-D{\'\i}az, J.~Lisenfeld, D.~Marcos
-  et~al.~// \BibEmph{Physical review letters}. \BibDash
-\newblock 2010. \BibDash
-\newblock Vol. 105, no.~23. \BibDash
-\newblock P.~237001.
-
-\bibitem{novotny2010}
-\selectlanguageifdefined{english}
-\BibEmph{Novotny~L.} Strong coupling, energy splitting, and level crossings: A
-  classical perspective~// \BibEmph{American Journal of Physics}. \BibDash
-\newblock 2010. \BibDash
-\newblock Vol.~78, no.~11. \BibDash
-\newblock P.~1199--1202.
-
-\bibitem{beaudoin2011}
-\selectlanguageifdefined{english}
-\BibEmph{Beaudoin~F., Gambetta~J.~M., Blais~A.} Dissipation and ultrastrong
-  coupling in circuit QED~// \BibEmph{Physical Review A}. \BibDash
-\newblock 2011. \BibDash
-\newblock Vol.~84, no.~4. \BibDash
-\newblock P.~043832.
-
-\bibitem{ithier2005}
-\selectlanguageifdefined{english}
-Decoherence in a superconducting quantum bit circuit~/ G~Ithier, E~Collin,
-  P~Joyez et~al.~// \BibEmph{Physical Review B}. \BibDash
-\newblock 2005. \BibDash
-\newblock Vol.~72, no.~13. \BibDash
-\newblock P.~134519.
-
-\bibitem{Blais2004}
-\selectlanguageifdefined{english}
-{Cavity quantum electrodynamics for superconducting electrical circuits: an
-  architecture for quantum computation}~/ A.~Blais, R.-S.~Huang, A.~Wallraff
-  et~al. \BibDash
-\newblock 2004. \BibDash
-\newblock P.~14. \BibDash
-\newblock \href{http://arxiv.org/abs/cond-mat/0402216}{0402216}.
-
-\bibitem{clerk2010}
-\selectlanguageifdefined{english}
-Introduction to quantum noise, measurement, and amplification~/ A.~A.~Clerk,
-  M.~H.~Devoret, S.~M.~Girvin et~al.~// \BibEmph{Reviews of Modern Physics}.
-  \BibDash
-\newblock 2010. \BibDash
-\newblock Vol.~82, no.~2. \BibDash
-\newblock P.~1155.
-
-\bibitem{gardiner1985}
-\selectlanguageifdefined{english}
-\BibEmph{Gardiner~C.~W., Collett~M.~J.} Input and output in damped quantum
-  systems: Quantum stochastic differential equations and the master equation~//
-  \BibEmph{Physical Review A}. \BibDash
-\newblock 1985. \BibDash
-\newblock Vol.~31, no.~6. \BibDash
-\newblock P.~3761.
-
-\bibitem{averkin2014}
-\selectlanguageifdefined{english}
-Broadband sample holder for microwave spectroscopy of superconducting qubits~/
-  A.~S.~Averkin, A.~Karpov, K.~Shulga et~al.~// \BibEmph{Review of Scientific
-  Instruments}. \BibDash
-\newblock 2014. \BibDash
-\newblock Vol.~85, no.~10. \BibDash
-\newblock P.~104702.
-
-\bibitem{goppl2009}
-\selectlanguageifdefined{english}
-\BibEmph{G{\"o}ppl~M.~V.} Engineering quantum electronic chips~: Ph.\,D.
-  thesis~/ M.~V.~G{\"o}ppl~; Diss., Eidgen{\"o}ssische Technische Hochschule
-  ETH Z{\"u}rich, Nr. 18314, 2009. \BibDash
-\newblock 2009.
-
-\bibitem{thuneberg2013}
-\selectlanguageifdefined{english}
-\BibEmph{Thuneberg~E.} Quantum optics in electric circuits. \BibDash
-\newblock 2013.
-
-\bibitem{oliver2009}
-\selectlanguageifdefined{english}
-\BibEmph{Oliver~W.~D., Valenzuela~S.~O.} Large-amplitude driving of a
-  superconducting artificial atom~// \BibEmph{Quantum Information Processing}.
-  \BibDash
-\newblock 2009. \BibDash
-\newblock Vol.~8, no. 2-3. \BibDash
-\newblock P.~261--281.
-
-\bibitem{Johansson2013}
-\selectlanguageifdefined{english}
-\BibEmph{Johansson~J.R., Nation~P.D., Nori~Franco}. QuTiP 2: A Python framework
-  for the dynamics of open quantum systems~//
-  \href{http://dx.doi.org/10.1016/j.cpc.2012.11.019}{\BibEmph{Computer Physics
-  Communications}}. \BibDash
-\newblock 2013. \BibDash
-\newblock Vol. 184, no.~4. \BibDash
-\newblock P.~1234 -- 1240. \BibDash
-\newblock Access mode:
-  \BibUrl{http://www.sciencedirect.com/science/article/pii/S0010465512003955}.
+State Tomography of Capacitively Shunted Phase Qubits with High Fidelity~/
+  Matthias~Steffen, M.~Ansmann, R.~McDermott et~al.~//
+  \href{http://dx.doi.org/10.1103/PhysRevLett.97.050502}{\BibEmph{Phys. Rev.
+  Lett.}} \BibDash
+\newblock 2006. \BibDash Aug. \BibDash
+\newblock Vol.~97. \BibDash
+\newblock P.~050502. \BibDash
+\newblock URL: \BibUrl{https://link.aps.org/doi/10.1103/PhysRevLett.97.050502}.
 
 \end{thebibliography}
