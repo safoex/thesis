@@ -188,6 +188,27 @@ Resonance Fluorescence of a Single Artificial Atom~/ O.~Astafiev,
 \newblock P.~15398--15413. \BibDash
 \newblock URL: \BibUrl{http://link.aps.org/doi/10.1103/PhysRevB.60.15398}.
 
+\bibitem{johansson2012qutip}
+\selectlanguageifdefined{english}
+\BibEmph{Johansson~JR, Nation~PD, Nori~Franco}. QuTiP: An open-source Python
+  framework for the dynamics of open quantum systems~// \BibEmph{Computer
+  Physics Communications}. \BibDash
+\newblock 2012. \BibDash
+\newblock Vol. 183, no.~8. \BibDash
+\newblock P.~1760--1772.
+
+\bibitem{Johansson2013}
+\selectlanguageifdefined{english}
+\BibEmph{Johansson~J.R., Nation~P.D., Nori~Franco}. QuTiP 2: A Python framework
+  for the dynamics of open quantum systems~//
+  \href{http://dx.doi.org/10.1016/j.cpc.2012.11.019}{\BibEmph{Computer Physics
+  Communications}}. \BibDash
+\newblock 2013. \BibDash
+\newblock Vol. 184, no.~4. \BibDash
+\newblock P.~1234 -- 1240. \BibDash
+\newblock URL:
+  \BibUrl{http://www.sciencedirect.com/science/article/pii/S0010465512003955}.
+
 \bibitem{Lucero2010}
 \selectlanguageifdefined{english}
 Reduced phase error through optimized control of a superconducting qubit~/
@@ -209,5 +230,16 @@ State Tomography of Capacitively Shunted Phase Qubits with High Fidelity~/
 \newblock Vol.~97. \BibDash
 \newblock P.~050502. \BibDash
 \newblock URL: \BibUrl{https://link.aps.org/doi/10.1103/PhysRevLett.97.050502}.
+
+\bibitem{JozsaFidelity}
+\selectlanguageifdefined{english}
+\BibEmph{Jozsa~Richard}. Fidelity for Mixed Quantum States~//
+  \href{http://dx.doi.org/10.1080/09500349414552171}{\BibEmph{Journal of Modern
+  Optics}}. \BibDash
+\newblock 1994. \BibDash
+\newblock Vol.~41, no.~12. \BibDash
+\newblock P.~2315--2323. \BibDash
+\newblock
+  \href{http://dx.doi.org/10.1080/09500349414552171}{http://dx.doi.org/10.1080/09500349414552171}.
 
 \end{thebibliography}
