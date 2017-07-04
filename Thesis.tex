@@ -559,14 +559,20 @@ $$
 вставить картинки с релаксацией и дефазировкой на сфере Блоха
 \fi
 
-\subsection{Утечки на более высокие уровни} \label{subsec:leakage}
+\subsection{Взаимодействие с более высокими уровнями системы} \label{subsec:leakage}
+\paragraph{Утечка заселенности.}
 Другой нежелательный (чаще всего) эффект, заключающийся в возбуждении более высоких уровней, не связан со взаимодействием с окружением кубита. Однако, он может проявиться при слишком коротком времени импульса и соответственно большой амплитуде поля $f$ в (\ref{eq:ham-qubit-2d-field}). В пункте \ref{chap:transmon} было сказано, что величина ангармонизма задает минимально время операций, осуществляемых с помощью микроволновых импульсов. Поясним теперь суть этого утверждения. Если у нас есть импульс продолжительностью конечной продолжительности $\tau$, то у него будет конечная ширина спектра $\Delta \omega$, из-за которой возможны переходы на более высокие уровни:
 \begin{gather*}
 	\Delta \omega \cdot \tau \sim 1, \\
 	f \cdot \tau \sim \pi \sim 1 \rightarrow \\
 	f_\omega \left(\omega_{01} - \Delta \omega \right) \neq 0 \rightarrow \\
-	\tau \sim \frac{1}{f} \sim \frac{1}{\left| \omega_{01} - \omega_{12} \right|} \rightarrow \text{утечки вида} \ket{1} \longrightarrow \ket{2}.
+	\tau \sim \frac{1}{f} \sim \frac{1}{\left| \omega_{01} - \omega_{12} \right|} \rightarrow \text{утечки вида}~\ket{1} \longrightarrow \ket{2}.
 \end{gather*}
+\paragraph{Ошибка в фазе.} Наличие состояний помимо кубитных приводит не только к утечкам (можно сказать, ошибкам в амплитуде в.ф.), но и ошибкам в фазе. Теперь причиной фазовой ошибки являются виртуальные переходы без потери заселенности. Такие переходы можно эффективно представить в виде добавленного $\sigma_z$ в гамильтониане:
+\begin{gather*}
+\hat{H}_{eff} - \hat{H}_q \sim  \beta \left(f\right) \sigma_z 
+\end{gather*}
+ 
 \iffalse
 Так же возможны двухфотонные переходы \textbf{[ссылка]} при 
 \begin{gather*}
@@ -641,7 +647,7 @@ $\mathbf{R_Z(\phi)}$ можно реализовать, используя в (\
 \begin{gather*}
 \mathbf{NOT} = \mathbf{X_\pi},\quad \quad \mathbf{H} = \mathbf{X_\pi}\mathbf{Y}_{\pi/2}.
 \end{gather*} 
-\subsection{Реализация двухкубитных импульсов}
+\subsection{Реализация двухкубитных импульсов} \label{par:CNOT}
 Здесь ситуация сложнее и подходов гораздо больше. Сущность у всех схожа - необходимо иметь систему, которую можно контролировать, приводя в резонанс с кубитами или одним из кубитов или контролировать энергию связи кубитов. Управление связью кубитов влечет дополнительные экспериментальные трудности и шумы, поэтому в данной работе рассматриваются двухкубитные системы с \textit{фиксированной связью}. 
 \paragraph{Кросс резонанс.} Одним из минималистических способов реализации необходимого $\mathbf{CNOT}$ гейта является использование эффекта, названного \textbf{[rigetti, devoret]} \textit{cross-resonance effect}. Он возникает при взаимодействии микроволного излучения с одним из кубитов. Отличие условий кросс резонанса от обычных однокубитных импульсов в том, что мы подаем импульс на первый кубит не с его резонансной частотой, а с резонансной частотой второго. Этот эффект проявляется для широкого класса связей, в том числе, для емкостной связи двух кубитов. Запишем гамильтониан двухкубитной системы в двухуровневом приближении:
 \begin{gather*}
@@ -670,7 +676,7 @@ f_1 = f, \quad f_2 = 0, \quad \omega^d_1 = \omega_2
 \end{gather}
 где $\mathbf{\left[ Z I \right]}$ и $\mathbf{\left[ I X \right]}$ - однокубитные операции ($\mathbf{I}$ - идентичный гейт, отсутствие операции над кубитом).
 
-\paragraph{Резонанс с высшими состояниями трансмона.} Другой способ был предложен еще до изобретения трансмона, но он применим и к системе из двух кубитов, если есть возможность управлять $E_J$ одного из кубитов. Здесь уже нельзя ограничиться рассмотрением двухуровневого приближения, так как суть явления состоит в резонансе с $\ket{2}$ одного из кубитов. Точнее, если сначала кубиты \textit{отстроены} друг от друга, т.е. $\omega^{01}_1 \neq \omega^{12}_2$, то для осуществления условий гейта необходимо привести в резонанс $\omega^{01}_1$ с $\omega^{12}_2$ или $\omega^{01}_2$. Так можно получить $\mathbf{CPHASE}$ или $\mathbf{SWAP}-like$ гейты:
+\paragraph{Резонанс с высшими состояниями трансмона.}\label{par:CPHASE} Другой способ был предложен еще до изобретения трансмона, но он применим и к системе из двух кубитов, если есть возможность управлять $E_J$ одного из кубитов. Здесь уже нельзя ограничиться рассмотрением двухуровневого приближения, так как суть явления состоит в резонансе с $\ket{2}$ одного из кубитов. Точнее, если сначала кубиты \textit{отстроены} друг от друга, т.е. $\omega^{01}_1 \neq \omega^{12}_2$, то для осуществления условий гейта необходимо привести в резонанс $\omega^{01}_1$ с $\omega^{12}_2$ или $\omega^{01}_2$. Так можно получить $\mathbf{CPHASE}$ или $\mathbf{SWAP}-like$ гейты:
 \begin{gather}
 \omega^{01}_1 = \omega^{12}_2 \quad \longrightarrow \quad \mathbf{U}_1 =  \mathbf{CPHASE} = 
 \begin{pmatrix}
@@ -678,14 +684,14 @@ f_1 = f, \quad f_2 = 0, \quad \omega^d_1 = \omega_2
 0 & 1 & 0 & 0 \\
 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & e^{-i \phi} \\
-\end{pmatrix},\\
+\end{pmatrix}, \label{gate:CPHASE}\\
 \omega^{01}_1 = \omega^{01}_2 \quad \longrightarrow \quad \mathbf{U}_2  = 
 \begin{pmatrix}
 1 & 0 & 0 & 0 \\
 0 & \cos \theta_1 & -i \sin \theta_1 & 0 \\
 0 & -i \sin \theta_1 & \cos \theta_1 & 0 \\
 0 & 0 & 0 & e^{-i \theta_2} \\
-\end{pmatrix}
+\end{pmatrix} \label{gate:SWAP-like}
 \end{gather}
 В случае $\mathbf{U}_2$ у нас происходит расщепление всех уровней системы \textbf{[Quantum logic gates for coupled superconducting phase qubi
 ts]}:
@@ -742,7 +748,7 @@ i \hbar \frac{\partial \psi}{\partial t} = \left( \hat{H}_{sys} + \hat{H}_{drive
 	\item \textbf{Точки на временной оси, для которых проводится моделирование}
 \end{itemize} 
 
-\subsection{Последовательность APE (Amplified Phase Error)}
+\subsection{Последовательность APE (Amplified Phase Error)} \label{subsec:APE}
 
 Результатом \textit{успешной} оптимизации являются импульсы с очень малыми ошибками. Однако, точное измерение ошибки высокого порядка малости после выполнения одного гейта - сложная измерительная задача. Чтобы упростить ее, можно воспользоваться APE-последовательностью, повторяющей много раз исследуемый импульс (и порождаемый им гейт) и, следовательно, усиливающей ошибку \cite{Lucero2010}. Малые ошибки, порождаемые процессами перехода $\ket{1} \leftrightarrow \ket{2}$ представимы в виде $\mathbf{Z}$ вращений  \cite{Steffen2006}:
 \begin{gather*}
@@ -814,14 +820,171 @@ f_{gauss} = \frac{A}{\sqrt{2 \pi}}  \exp\frac{ \left( t - c\right)^2}{\sigma} \l
 
 Однако, в обоих случаях $f(t)$ хоть и быстро затухает за пределами $(a,b)$ и $(c-\sigma,c+\sigma)$ соответственно, не равна нулю для любого $t$. Чтобы избавиться от ошибок, связанных с реальной конечной продолжительностью, импульсы обрезают:
 \begin{gather*}
-f_{tanh} = A \left( \tanh \left( \frac{t-a}{\sigma} \right) - \tanh \left( \frac{t-b}{\sigma} \right) \right) \cdot \eta \left(t, \frac{a+b}{2}, \xi \right) - B, \\
-f_{gauss} = \frac{A}{\sqrt{2 \pi}}  \exp\frac{ \left( t - c\right)^2}{\sigma} \cdot \eta \left(t, c, \xi \right) - B,
+f_{tanh} = A \left( \tanh \left( \frac{t-a}{\sigma} \right) - \tanh \left( \frac{t-b}{\sigma} \right) \right) \cdot \eta \left(t, \frac{a+b}{2}, \xi \right) - B, \label{pulse:tanh-cut} \\
+f_{gauss} = \frac{A}{\sqrt{2 \pi}}  \exp\frac{ \left( t - c\right)^2}{\sigma} \cdot \eta \left(t, c, \xi \right) - B, \label{pulse:gauss-cut}
 \end{gather*}
 где $\cdot \eta \left(t, c, \xi \right) = \theta(t-c+\frac{\xi}{2}) - \theta(t-c-\frac{\xi}{2})$ - обрезает в точках $c-\frac{\xi}{2}$, $c+\frac{\xi}{2}$,\newline а $B =f_{tanh,gauss}(c-\frac{\xi}{2}) = f_{tanh,gauss}(c+\frac{\xi}{2})$.
 \newline
 Выбор огибающей позволит немного ``упаковать'' спектр сигнала, но повышение точности будет все же не столь большим. Поэтому прибегают к дополнительным методам, таким как HD или GRAPE.
 
-\subsection{Derivative Removal by Adiabatic Gate} 
+\subsection{Derivative Removal by Adiabatic Gate} \label{subsec:DRAG}
+Чтобы избавить от ошибок, связанных с потерей заселенности и лишней фазой (пункт \ref{subsec:leakage}), можно воспользоваться дополнительными возможностя контроля. Согласно (\ref{eq:rwa-2d}), варьируя фазу $\varphi$ мы меняем ось на сфере Блохе, вокруг которой совершается поворот состояния кубита. В N-мерной модели действие $\hat n$ будет продолжено похожим образом на следующие состояния \cite{Lucero2010} (рассмотрим для простоты трехуровневую модель):
+\begin{gather}
+\hat{H}^{rf} = \hbar \sum_{j=1,2} \left[\delta_j \Pi_j  + \frac{\mathcal{E}^x(t)}{2}\lambda_j\sigma^x_{j-1,j} + \frac{\mathcal{E}^y(t)}{2}\lambda_j\sigma^y_{j-1,j} \right],
+\label{drag-ham-3d}
+\end{gather}  
+здесь $\delta_i$ - разность резонансной энергии перехода $ket{i-1} \rightarrow \ket{i}$ и частоты подаваемоего излучения $\omega_d$. Без ограничения общности можно положить $\lambda_1 = 1, \lambda_2 = \lambda$. Перейдем непосредственно в подпространство кубита с помощью адиабатического преобразования $V(t)$ ($\mathcal{E}^x(t)/\Delta$ - параметр адиабатического преобразования):
+\begin{gather*}
+V(t) = \exp \left[ -i \mathcal{E}^x(t) \left( \hat{\sigma}^y_{0,1} + \lambda \hat{\sigma}^y_{1,2}\right) \right]
+\end{gather*}
+В представлении взаимодействия $V$, $H^V = V H^{rf} V^+ + i \hbar \dot{V} V^+$ и 
+\begin{gather*}
+\hat{H}^V \simeq \frac{\mathcal{E}_x}{2}\sigma^x_{0,1} + \frac{\lambda \mathcal{E}_x^2}{ 8 \Delta}\sigma^x_{0,2}  + \left( \delta_2 + \frac{\left(\lambda^2 + 2 \right) \mathcal{E}^2_x}{4 \Delta} \right) \Pi_2 +\\  \left( \delta_1 - \frac{\left(\lambda^2 -4 \right)\mathcal{E}^2_x}{4 \Delta}\right) \Pi_1 + \left[ \frac{\mathcal{E}_y}{2} + \frac{\dot{\mathcal{E}}_x}{2 \Delta} \right] \left(\hat{\sigma}^y_{0,1} + \lambda \hat{\sigma}^y_{1,2}\right)
+\end{gather*}
+Осталось воспользоваться имеющейся возможностью и положить 
+\begin{gather*}
+\mathcal{E}_y = \frac{\dot{\mathcal{E}}_x}{2},
+\end{gather*}
+чтобы нивелировать утечки и 
+\begin{gather*}
+\delta_1 = \frac{\left(\lambda^2 -4 \right)\mathcal{E}^2_x}{4 \Delta},
+\end{gather*} 
+чтобы устранить ошибку в фазе. Обе эти поправки - первого порядка. Далее можно учитывать 
+высшие порядки в разложении и мы получим формулы вида:
+\begin{gather}
+\mathcal{E}_x(t) = \mathcal{E}^0_x \sum_{k = 0...} \alpha_k\left(\lambda\right) \frac{\mathcal{E}^0_x}{\Delta}^{2k},  \\
+\mathcal{E}_y(t) = 0 \quad -\frac{\dot{\mathcal{E}}^0_x}{\Delta} \sum_{k = 0...} \beta_k\left(\lambda\right) \frac{\mathcal{E}^0_x}{\Delta}^{2k}, \\
+\delta_1(t) =  \Delta \sum_{k = 1...} \gamma_k\left(\lambda\right) \frac{\mathcal{E}^0_x}{\Delta}^{2k},
+\label{eq:drag-inf}
+\end{gather}
+здесь $\alpha_0 =  \beta_0 = 1$. 
+\pagebreak
+\subsection{Half-Derivative} \label{subsec:HD}
+\begin{wrapfigure}{l}{0.5\textwidth}
+\includegraphics[width = 0.5 \textwidth ]{Pictures2/YZ_control.png}
+\caption{ Здесь показана зависимость точности импульсов от амплитуд $\mathbf{Y}$ и $\mathbf{Z}$ относительно описанных в DRAG. В исходной точке (обведена в кружок) точность совпадает с параметрами HD - $1/2 \mathbf{Y}$ и отсутсвие $\mathbf{Z}$.}
+\label{fig:gaussian-tanh-envelope}
+\end{wrapfigure}
+В эксперименте значительно проще контролировать только $\mathbf{X}$ и $\mathbf{Y}$ квадратуру, чем еще и $\delta$ ($\mathbf{Z}$). Кроме того, оказывается, что результат не изменится \cite{Lucero2010}, если мы уменьшим в два раза амплитуду $\mathbf{Y}$ и совсем выключим $\delta$:
+\begin{gather}
+\mathcal{E}_y(t) = - \frac{\dot{\mathcal{E}}_x}{2\Delta},
+\delta = 0
+\label{eq:HD}
+\end{gather}
+\newline{}\newline{}\newline{}\newline{}\newline{}\newline{}\newline{}\newline{}\newline{}\newline{}\newline{}
+\subsection{GRadient Ascent Pulse Engineering} \label{subsec:GRAPE}
+В предыдущих пунктах обсуждались способы аналитического получения огибающих $\mathbf{X}$, $\mathbf{Y}$ и, возможно, $\mathbf{Z}$ импульсов. Однако, при наличии возможности моделирования импульсов, можно минимизировать их погрешность численно. Запишем гамильтониан системы с импульсом в 2-уровневом приближении (и сразу в RWA): 
+\begin{gather*}
+\hat{H}^{rf} =  \hbar f\left(t\right)\hat{\sigma}_x \cos\varphi\left(t\right) + \hbar f\left(t\right)\hat{\sigma}_y \sin\varphi\left(t\right) 
+\end{gather*}
+Или, обозначив $f_x\left(t\right) = f\left(t\right) \cos\varphi\left(t\right), f_y\left(t\right) = f\left(t\right) \cos\varphi\left(t\right)$, в форме 
+\begin{gather*}
+\hat{H}^{rf} = \hbar f_x\left(t\right)\hat{\sigma}_x \quad + \quad f_y\left(t\right)\hat{\sigma}_y
+\end{gather*}
+В N-мерном случае нельзя так просто в RWA модель из-за того, что разные уровни будут осциллировать с разными частотами, в особенности частота $\ket{2}$  отличается от $\ket{1}$ всего на величину ангармонизма. Можно оставить только интересующие нас уровни (например, $\ket{0},\ket{1},\ket{2}$) с соответствующими гармониками, однако исключить временную зависимость совсем не представляется возможным. 
+\begin{gather}
+\hat{H} = \hat{H}_q + \hbar f\left(t\right) \hat{n} \cos\left( \omega_d t + \varphi\left(t\right)\right)
+\label{eq:grape-ham-Nd}
+\end{gather}
+В оригинальной статье по GRAPE \cite{KHANEJA2005296} авторы далее разбивали время на одинаковые интервалы продолжительностью $\Delta t$ так, что в пределах $\left(t_i, t_i + \Delta t\right)$ гамильтонианы  контроля $\hat{H}_k$ и кубита $\hat{H}_0$ можно было считать постоянным:
+\begin{gather*}
+\hat{H} = \hat{H}_0 + \sum_{k,i} f_{k,i} \langle{H}_k\rangle_i
+\end{gather*}
+В случае (\ref{eq:grape-ham-Nd}) это весьма затруднительно, так как частота $\omega_d \simeq \omega_{01}$ и дискретизация времени должна осуществляться на масштабе $\Delta t \ll 1/\omega_d$, а это повлечет за собой как и вычислительную трудность (очень большое количество интервалов), так и экспериментальную - менять на таких масштабах $(f, \varphi)$ произвольным образом приведет к дополнительным ошибкам формирования импульса. Более разумным представляется ограничить $\Delta t$ снизу реальной возможной длительностью прямоугольного импульса  $\sim 1нс$ и считать эволюцию для временезависимого $\hat{H}_k\left(t\right), t \in \left(t_i, t_i + \Delta T\right)$. Минимизировать ошибку импульсов можно представив ее в виде 
+\begin{gather*}
+E\left(f_0, f_1, ... \right) = 1 - \mathcal{F}\left(U_{f_0,f_1, ...}, \mathcal{U}_{ideal}\right)
+\end{gather*}
+Таким образом GRAPE-оптимизации импульса будет соответствовать поиск минимума функции $E\left(\vec{f}~\right)$.
+
+\chapter{Результаты}
+Наконец обсудим полученные результаты в ходе работы. Их можно поделить на две части - результаты \textit{моделирования} некоторых важных систем и вентилей и результаты \textit{оптимизации} квантовых вентилей.
+\section{Моделирование}
+Было проведено моделирование динамике различных однокубитных и двухкубитных систем. Для это был написан стандартизованный код в виде библиотеки на языке \texttt{Python}. К числу наиболее важных объектов и явлений,реализованных и/или промоделированных в ходе работы, относятся:
+\begin{itemize}
+	\item Двухуровневая динамики кубита вида (\ref{eq:rwa-2d})
+	\item N-уровневая динамика трансмона с гамильтонианом вида (\ref{eq:ham-qubit-charge-basis-N})
+	\item Двухкубитные гейты:
+	\begin{itemize}
+		\item $\mathbf{CNOT}$ (\ref{par:CNOT})
+		\item $\mathbf{CPHASE}$ (\ref{gate:CPHASE})
+		\item $\mathbf{SWAP}$-like (\ref{gate:SWAP-like})
+	\end{itemize}
+	\item Импульсы 
+	\begin{itemize}
+		\item С гауссовой огибающей (\ref{pulse:gauss}, \ref{pulse:gauss-cut})
+		\item С тангенциальной огибающей (\ref{pulse:tanh}, \ref{pulse:tanh-cut}) 
+		\item Простые прямоугольные импульсы
+	\end{itemize}	  
+	\item Последовательность, усиливающая ошибку в фазе (APE) (\ref{subsec:APE})
+	\item И, наконец, методы оптимального контроля 
+	\begin{itemize}
+		\item DRAG (\ref{subsec:DRAG})
+		\item Half-Derivative (\ref{subsec:HD})
+		\item GRAPE (для случая времене\textbf{зависимых} $\hat{H}_{k}$) (\ref{subsec:GRAPE})
+	\end{itemize}  
+\end{itemize}
+Далее,о наиболее интересных результатах \textit{моделирования} поподробнее.
+\subsection{APE}
+В качестве опорного $\mathbf{X}_{\pi/2}'$ или $\mathbf{\Phi}_{\pi/2}'$ импульса была выбран гауссов импульс в форме (\ref{pulse:gauss-cut}) продолжительностью $50ns$ каждый. Для трансмона использовались следующие параметры: $\omega_{ge} = 7.9GHz, \Delta = 240MHz$. 
+\begin{figure}[h]{c}
+\includegraphics[width = 0.9\textwidth]{Pictures2/APE-sample}
+\caption{Динамика трансмона под действием APE (без последного $\mathbf{\Phi}_{\pi/2}$ на основе импульса $\mathbf{X}_{\pi/2}$ с гауссовой огибающей. Продолжительность одного импульса - $50\text{нс}$. Как видно на графике, ошибка действительно накапливается. }
+\end{figure}
+\begin{figure}[!h]
+\begingroup
+\captionsetup[subfigure]{width=0.95\textwidth, justification=normal}
+\centering
+\begin{subfigure}[t]{0.49\linewidth}
+\centering
+\includegraphics[width = .95\textwidth]{Pictures2/APE_result_1}
+\caption{ Общий вид APE для разного количества псевдоидентичных импульсов (0...10) в отстуствие релаксации и дефазировки. }
+\label{fig:ape-result-1}
+\end{subfigure}~
+\begin{subfigure}[t]{0.49\linewidth}
+\centering
+\includegraphics[width = .95\textwidth]{Pictures2/APE_result_2}
+\caption{ Можно заметить, что накапливается ошибка как и по амплитуде, так и по фазе. }
+\label{fig:ape-result-2}
+\end{subfigure}
+\endgroup
+\caption{ Релаксация и дефазировка не влияют на фазовую ошибку, а вот амплитуда в эксперименте значительно уменьшается в силу большой продолжительности APE $t \sim 1/\gamma$. }
+\label{fig:ape-results}
+\end{figure} 
+
+Сравним с экспериментальными данными APE, полученными в Лаборатории ИКС для трансмона и импульсов с теми же параметрами:
+\begin{figure}[!h]
+\begingroup
+\captionsetup[subfigure]{width=0.95\textwidth, justification=normal}
+\centering
+\begin{subfigure}[t]{0.69\linewidth}
+\centering
+\includegraphics[width = .95\textwidth]{Pictures2/APE_experiment}
+\caption{ Результат эксперимента APE. Зависимость ошибки от $N$ получилась не линейной, как предсказывает теория. }
+\label{fig:ape-experiment}
+\end{subfigure}~
+\begin{subfigure}[t]{0.29\linewidth}
+\centering
+\includegraphics[width = .95\textwidth]{Pictures2/APE_error_gaussian}
+\caption{ Линейная зависимость, полученная моделированием.  }
+\label{fig:ape-result-2}
+\end{subfigure}
+\endgroup
+\caption{ Несмотря на то, что вид зависимости для гауссовых импульсов в эксперименте отличен от теории и, соответственно, результатов моделирования, сами значения ошибки в фазе лежат в той же области, что и в эксперименте. }
+\label{fig:ape-results-exp}
+\end{figure} 
+
+\section{Оптимизация} 
+
+
+\chapter{Заключение}
+\section{Список результатов}
+\section{Планы на будущее}
+\section{Благодарности}
+
+
+
+
+
 
 
 
@@ -839,8 +1002,6 @@ f_{gauss} = \frac{A}{\sqrt{2 \pi}}  \exp\frac{ \left( t - c\right)^2}{\sigma} \c
 \caption{Принципиальная схема Flux-кубита в рамках RCSJ-модели. Два из трех переходов по площади одинаковы, площадь третьего по сравнению с ними в $\alpha$ раз отличается (параметры отличаются в то же число раз согласно формулам для емкости конденсатора и (\ref{eq:Ic})). $\Phi$ -- поток, пронизывающий контур. Резисторы не изображены, так как рабочий ток переходов меньше $I_c$.}
 \label{fig:qubit}
 \end{figure}
-
- 
 Для трех невзаимодействующих переходов таких разностей будет три, и их и следует выбрать в качестве обобщенных координат системы. Однако в случае замкнутого контура дополнительно накладывается фазо-потоковое соотношение (\ref{eq:phsflx}):
 \begin{equation}
 \varphi_1 + \varphi_2 + \varphi_3 = 2\pi\left(\frac{\Phi}{\Phi_0} - k\right),\ k\in \mathcal{Z}.

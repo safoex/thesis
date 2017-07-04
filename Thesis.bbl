@@ -242,4 +242,17 @@ State Tomography of Capacitively Shunted Phase Qubits with High Fidelity~/
 \newblock
   \href{http://dx.doi.org/10.1080/09500349414552171}{http://dx.doi.org/10.1080/09500349414552171}.
 
+\bibitem{KHANEJA2005296}
+\selectlanguageifdefined{english}
+Optimal control of coupled spin dynamics: design of NMR pulse sequences by
+  gradient ascent algorithms~/ Navin~Khaneja, Timo~Reiss, Cindie~Kehlet
+  et~al.~//
+  \href{http://dx.doi.org/http://dx.doi.org/10.1016/j.jmr.2004.11.004}{\BibEmph{Journal
+  of Magnetic Resonance}}. \BibDash
+\newblock 2005. \BibDash
+\newblock Vol. 172, no.~2. \BibDash
+\newblock P.~296 -- 305. \BibDash
+\newblock URL:
+  \BibUrl{http://www.sciencedirect.com/science/article/pii/S1090780704003696}.
+
 \end{thebibliography}
